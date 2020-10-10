@@ -43,16 +43,28 @@ const run = async () => {
         const projectRegex = new RegExp(`^([\\d|\\w]*)\\s*.*${projectName}.*`, "m");
         const projectID = projectRegex.exec(sanityProjectsOutput.stdout)[1];
         if (private) {
-            await exec('sanity dataset visibility get cms-test', { cwd: path.join(ROOT_DIR, projectDir) });
-            await exec('sanity dataset visibility set cms-test private', { cwd: path.join(ROOT_DIR, projectDir) });
-            await exec('sanity dataset visibility get cms-test', { cwd: path.join(ROOT_DIR, projectDir) });
-            
+            let output = await exec(`sanity dataset visibility get ${dataset}`, { cwd: path.join(ROOT_DIR, projectDir) });
+            log(output.stdout);
+            if (output.stderr) {
+                err(output.stderr);
+            }
+            output = await exec(`sanity dataset visibility set ${dataset} private`, { cwd: path.join(ROOT_DIR, projectDir) });
+            log(output.stdout);
+            if (output.stderr) {
+                err(output.stderr);
+            }
+            output = await exec(`sanity dataset visibility get ${dataset}`, { cwd: path.join(ROOT_DIR, projectDir) });
+            log(output.stdout);
+            if (output.stderr) {
+                err(output.stderr);
+            }
+
             open('https://manage.sanity.io/');
-            token = prompt("Please retrieve an api token: ", {hide: true})
+            token = prompt("Please retrieve an api token: ", { hide: true })
         }
 
-        fs.writeFileSync(ENV_PATH, 
-`SANITY_PROJECT_ID=${projectID}
+        fs.writeFileSync(ENV_PATH,
+            `SANITY_PROJECT_ID=${projectID}
 SANITY_DATA_SET=${dataset}
 SANITY_PRIVATE=${private}
 ${private ? `SANITY_${env.toUpperCase()}_TOKEN="${token}"` : ''}`
@@ -71,7 +83,7 @@ ${private ? `SANITY_${env.toUpperCase()}_TOKEN="${token}"` : ''}`
         }), { encoding: 'utf8', flag: 'w' });
         await exec('sanity graphql deploy --playground', { cwd: path.join(ROOT_DIR, projectDir) });
 
-        return {env, private};
+        return { env, private };
     }
     catch (error) {
         err(error.message);
