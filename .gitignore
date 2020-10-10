@@ -67,3 +67,8 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+# Extras
+.cms-config.json
+# Local Netlify folder
+.netlify
