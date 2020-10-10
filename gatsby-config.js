@@ -41,7 +41,7 @@ module.exports = {
             options: {
                 projectId: process.env.SANITY_PROJECT_ID,
                 dataset: process.env.SANITY_DATA_SET,
-                token:  process.env.SANITY_DEVELOPMENT_TOKEN
+                token: process.env.NODE_ENV === "development" ? process.env.SANITY_DEVELOPMENT_TOKEN : process.env.SANITY_TOKEN
             },
         },
     ],
