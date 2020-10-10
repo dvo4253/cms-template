@@ -11,13 +11,15 @@ const PROJECT_ID_KEY = "\"@@_ProjectID_@@\""
 const DATASET_KEY = "\"@@_DatasetName_@@\"";
 const TOKEN_KEY = "\"@@_Token_@@\"";
 
-const cmsConfig = JSON.parse(fs.readFileSync(CONFIG_PATH, { encoding: 'utf8', flag: 'r' }));
+
 
 const run = async (options) => {
+    // const cmsConfig = JSON.parse(fs.readFileSync(CONFIG_PATH, { encoding: 'utf8', flag: 'r' }));
+
     const {env, private } = options;
     const ENV_PATH = path.join(ROOT_DIR, `.env.${env}`)
     // require('dotenv').config(ENV_PATH);
-    let tokenParam = private ? `NODE_ENV === "${env}" ? process.env.SANITY_${env.toUpperCase()}_TOKEN : process.env.SANITY_TOKEN` : '';
+    let tokenParam = private ? `process.env.NODE_ENV === "${env}" ? process.env.SANITY_${env.toUpperCase()}_TOKEN : process.env.SANITY_TOKEN` : '';
 
     const gatsbyConfigTemplate = fs.readFileSync(gatsbyConfigFileTemplatePath, { encoding: 'utf8', flag: 'r' });
     // let projectID = null;
