@@ -11,13 +11,15 @@
     "gatsby-plugin-offline": "3.2.31",
     "gatsby-plugin-react-helmet": "3.3.14",
     "gatsby-plugin-sharp": "2.6.40",
+    "gatsby-plugin-tinacms": "0.31.0",
     "gatsby-source-filesystem": "2.3.34",
     "gatsby-source-sanity": "6.0.4",
     "gatsby-transformer-sharp": "2.5.17",
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-helmet": "6.1.0"
+    "react-helmet": "6.1.0",
+    "styled-components": "5.2.0"
   },
   "devDependencies": {
     "chalk": "4.1.0",

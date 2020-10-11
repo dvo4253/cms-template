@@ -12,14 +12,16 @@ const DATASET_KEY = "\"@@_DatasetName_@@\"";
 const TOKEN_KEY = "\"@@_Token_@@\"";
 
 
-
-const run = async (options) => {
+const args = process.argv.slice(2);
+const run = async () => {
+    const [ env, private ] = args;
     // const cmsConfig = JSON.parse(fs.readFileSync(CONFIG_PATH, { encoding: 'utf8', flag: 'r' }));
 
-    const {env, private } = options;
+    // const {env, private } = options;
     const ENV_PATH = path.join(ROOT_DIR, `.env.${env}`)
     // require('dotenv').config(ENV_PATH);
-    let tokenParam = private ? `process.env.NODE_ENV === "${env}" ? process.env.SANITY_${env.toUpperCase()}_TOKEN : process.env.SANITY_TOKEN` : '';
+    
+    let tokenParam = private === "true"  ? `process.env.NODE_ENV === "${env}" ? process.env.SANITY_${env.toUpperCase()}_TOKEN : process.env.SANITY_TOKEN` : '';
 
     const gatsbyConfigTemplate = fs.readFileSync(gatsbyConfigFileTemplatePath, { encoding: 'utf8', flag: 'r' });
     // let projectID = null;
@@ -52,4 +54,5 @@ const run = async (options) => {
     fs.writeFileSync(gatsbyConfigFilePath, gatsbyConfigContents, { encoding: 'utf8', flag: 'w' })
 }
 
+run();
 module.exports = run;
