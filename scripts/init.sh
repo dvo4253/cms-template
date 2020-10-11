@@ -1,5 +1,7 @@
-#!/bin/ksh
-NODE_ENV=development # default
+#!/bin/sh
+
+# default
+NODE_ENV=development 
 source ~/.zshrc
 
 if [[ -n $1 ]]; then
@@ -14,9 +16,8 @@ npm install gatsby-cli @sanity/cli netlify-cli -g
 npm i
 
 node ./scripts/init-sanity.js
-
-node ./scripts/init-gatsby.js
+node ./scripts/init-gatsby.js ${NODE_ENV} true
 
 netlify init
 
-node ./scripts/init-netlify.js ${NODE_ENV}
+node ./scripts/init-netlify.js ${NODE_ENV} 

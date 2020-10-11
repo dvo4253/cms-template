@@ -90,4 +90,5 @@ ${private ? `SANITY_${env.toUpperCase()}_TOKEN="${token}"` : ''}`
     }
 }
 
+run();
 module.exports = run;

@@ -44,6 +44,18 @@ module.exports = {
                 token: "@@_Token_@@"
             },
         },
+        {
+            resolve: 'gatsby-plugin-tinacms',
+            options: {
+              enabled: process.env.NODE_ENV !== 'production',
+              sidebar: {
+                position: 'displace',
+              },
+              plugins: [
+                //...
+              ],
+            },
+          },
     ],
 }
 
