@@ -19,6 +19,11 @@ body {
   -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
   font-feature-settings: "kern", "liga", "clig", "calt";
 }
+
+.ant-layout-header {
+  background: var(--primary-color-4);
+}
+
 article,
 aside,
 details,
