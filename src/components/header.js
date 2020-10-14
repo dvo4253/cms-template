@@ -1,10 +1,16 @@
-import { Layout } from 'antd';
-import PropTypes from "prop-types"
 import React from "react"
-const { Header: AntHeader} = Layout;
+import { Layout, Menu } from 'antd';
+import { MailOutlined } from '@ant-design/icons';
+import PropTypes from "prop-types"
+const { Header: AntHeader } = Layout;
+
 const Header = () => (
   <AntHeader>
-    Header
+    <Menu mode="horizontal">
+      <Menu.Item key="mail" icon={<MailOutlined />}>
+        Navigation One
+        </Menu.Item>
+    </Menu>
   </AntHeader>
 )
 
